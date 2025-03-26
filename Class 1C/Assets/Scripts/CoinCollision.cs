@@ -34,7 +34,7 @@ public class CoinCollision : MonoBehaviour
             gameObject.SetActive(false);
 
             //Let's add a UI and count our coins! This line of Code is responsible for our Updated Counter Number to Show up on the Screen
-
+            
         }
 
         else
