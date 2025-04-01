@@ -19,8 +19,12 @@ public class AddToInventory : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            //We add the Game Object this current script is attatched to to our List in the InventorySystem Script attatched to the Player
             collision.gameObject.GetComponent<InventorySystem>().inventory.Add(gameObject);
-            collision.gameObject.GetComponent<InventorySystem>().visualInventory.Add(gameObject, _sprite);
+
+            //Call the UpdateInventory() method inside the InventorySystem Script attatched to the player
+            collision.gameObject.GetComponent<InventorySystem>().UpdateInventory();
+
             gameObject.SetActive(false);    
         }
     }
