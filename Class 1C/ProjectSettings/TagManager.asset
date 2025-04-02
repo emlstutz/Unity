@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Collectible
+  - Key
+  - doorKey
   layers:
   - Default
   - TransparentFX
