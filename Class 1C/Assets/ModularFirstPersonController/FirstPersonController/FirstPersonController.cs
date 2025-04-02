@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -16,6 +17,35 @@ using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
+    [Header("Key Collection")]
+    public TextMeshProUGUI keyListText; // Now this will be visible in Inspector
+    private List<string> collectedKeys = new List<string>();
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Key"))
+        {
+            string keyName = other.gameObject.name;
+            collectedKeys.Add(keyName);
+            UpdateUI();
+            Destroy(other.gameObject);
+        }
+    }
+
+    void UpdateUI()
+    {
+        if (keyListText == null)
+        {
+            Debug.LogWarning("KeyListText is not assigned in the inspector!");
+            return;
+        }
+
+        keyListText.text = "Collected Keys:\n";
+        foreach (string key in collectedKeys)
+        {
+            keyListText.text += "- " + key + "\n";
+        }
+    }
     private Rigidbody rb;
 
     #region Camera Movement Variables
@@ -605,6 +635,7 @@ public class FirstPersonController : MonoBehaviour
         GUI.enabled = true;
 
         #endregion
+        fpc.keyListText = (TextMeshProUGUI)EditorGUILayout.ObjectField("Key List Text", fpc.keyListText, typeof(TextMeshProUGUI), true);
 
         #endregion
 
