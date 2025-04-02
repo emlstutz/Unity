@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyCollecting : MonoBehaviour
 {
@@ -6,16 +7,41 @@ public class KeyCollecting : MonoBehaviour
     public GameObject textKey;
 
     //images
-    public GameObject redKey;
-    public GameObject greenKey;
-    public GameObject yellowKey;
-    public GameObject purpleKey;
+    public GameObject image1;
+    public GameObject image2;
+    public GameObject image3;
+    public GameObject image4;
+    private int colorTrack=0;
+
+    Color colorName;
 
     void ShowMessage(Collider other)
     {
         textKey.SetActive(true);
         Invoke("ShowText", 3);
         other.gameObject.SetActive(false);
+    }
+
+    void SetColor()
+    {
+        colorTrack++;
+
+        if (colorTrack == 1) 
+        {
+            image1.GetComponent<Image>().color = colorName;
+        }
+        if (colorTrack == 2)
+        {
+            image2.GetComponent<Image>().color = colorName;
+        }
+        if (colorTrack == 3)
+        {
+            image3.GetComponent<Image>().color = colorName;
+        }
+        if (colorTrack == 4)
+        {
+            image4.GetComponent<Image>().color = colorName;
+        }
     }
 
 
@@ -25,25 +51,30 @@ public class KeyCollecting : MonoBehaviour
             if (other.CompareTag("greenKey"))
             {
                 greenKeyCollected = true;
-                greenKey.SetActive(true);
+
+                colorName = Color.green;
+                SetColor();
 
                 ShowMessage(other);
             }
 
             if (other.CompareTag("redKey"))
             {
-                redKey.SetActive(true);
-                ShowMessage(other);
+            colorName = Color.red;
+            SetColor();
+            ShowMessage(other);
             }
             if (other.CompareTag("yellowKey"))
             {
-                yellowKey.SetActive(true);
-                ShowMessage(other);
+            colorName = Color.yellow;
+            SetColor();
+            ShowMessage(other);
             }
             if (other.CompareTag("purpleKey"))
             {
-                purpleKey.SetActive(true);
-                ShowMessage(other);
+            colorName = Color.cyan;
+            SetColor();
+            ShowMessage(other);
             }
 
         if (other.CompareTag("Door") && greenKeyCollected == true)
