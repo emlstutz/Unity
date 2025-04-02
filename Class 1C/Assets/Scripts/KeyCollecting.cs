@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KeyCollecting : MonoBehaviour
 {
-    public bool doorKey = false;
+    bool doorKey = false;
     public GameObject textKey;
 
 
@@ -18,6 +18,12 @@ public class KeyCollecting : MonoBehaviour
             textKey.SetActive(true);
             Invoke("ShowText", 3);
             other.gameObject.SetActive(false);
+        }
+
+        if(other.CompareTag("Door") && doorKey==true)
+        {
+            other.transform.Rotate(0, 90, 0);
+            doorKey = false;
         }
     }
 
