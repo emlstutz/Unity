@@ -6,9 +6,11 @@ TagManager:
   tags:
   - Ground
   - Collectible
-  - Key
-  - doorKey
   - Door
+  - greenKey
+  - yellowKey
+  - redKey
+  - purpleKey
   layers:
   - Default
   - TransparentFX

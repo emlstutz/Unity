@@ -2,28 +2,54 @@ using UnityEngine;
 
 public class KeyCollecting : MonoBehaviour
 {
-    bool doorKey = false;
+    bool greenKeyCollected = false;
     public GameObject textKey;
+
+    //images
+    public GameObject redKey;
+    public GameObject greenKey;
+    public GameObject yellowKey;
+    public GameObject purpleKey;
+
+    void ShowMessage(Collider other)
+    {
+        textKey.SetActive(true);
+        Invoke("ShowText", 3);
+        other.gameObject.SetActive(false);
+    }
+
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Key") || other.CompareTag("doorKey"))
-        {
-            if (other.CompareTag("doorKey"))
+            if (other.CompareTag("greenKey"))
             {
-                doorKey = true;
+                greenKeyCollected = true;
+                greenKey.SetActive(true);
+
+                ShowMessage(other);
             }
 
-            textKey.SetActive(true);
-            Invoke("ShowText", 3);
-            other.gameObject.SetActive(false);
-        }
+            if (other.CompareTag("redKey"))
+            {
+                redKey.SetActive(true);
+                ShowMessage(other);
+            }
+            if (other.CompareTag("yellowKey"))
+            {
+                yellowKey.SetActive(true);
+                ShowMessage(other);
+            }
+            if (other.CompareTag("purpleKey"))
+            {
+                purpleKey.SetActive(true);
+                ShowMessage(other);
+            }
 
-        if(other.CompareTag("Door") && doorKey==true)
+        if (other.CompareTag("Door") && greenKeyCollected == true)
         {
             other.transform.Rotate(0, 90, 0);
-            doorKey = false;
+            greenKeyCollected = false;
         }
     }
 
