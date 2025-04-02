@@ -11,9 +11,9 @@ public class keyDoorRising : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             gameObject.SetActive(false);
             playerInv.inventory.Add(gameObject);

@@ -8,11 +8,11 @@ public class risingDoorMechanic : MonoBehaviour
     private bool isLocked = true;
     private bool isOpened = false;
     private float detectionRangeCollider = 2f;
-    private Animator mAnimator;
+    public Animator mAnimator;
 
     private void Start()
     {
-        mAnimator = GetComponent<Animator>();
+        //mAnimator = GetComponent<Animator>();
         isLocked = true;
         isOpened = false;
 
@@ -27,7 +27,6 @@ public class risingDoorMechanic : MonoBehaviour
         {
             if (CorrectKey(doorKeyName))
             {
-                UnlockDoor();
                 Debug.Log("Door Unlocked");
                 isLocked = false;
 
@@ -36,6 +35,20 @@ public class risingDoorMechanic : MonoBehaviour
             {
                 Debug.Log("Door Locked");
             }
+        }
+        if (!isLocked && !isOpened && other.CompareTag("Player"))
+            {
+                UnlockDoor();
+                Debug.Log("Door Opened!");
+            }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!isLocked && isOpened && other.CompareTag("Player"))
+        {
+                LockDoor();
+                Debug.Log("Door Closed");
         }
     }
 
@@ -57,7 +70,17 @@ public class risingDoorMechanic : MonoBehaviour
         if (mAnimator != null)
         {
             isOpened = true;
-            mAnimator.SetTrigger("openDoor01");
+            mAnimator.SetTrigger("OpenDoor");
+        }
+    }
+
+    private void LockDoor()
+    {
+        Debug.Log("This Function Works Too!!");
+        if (mAnimator != null)
+        {
+            isOpened = false;
+            mAnimator.SetTrigger("CloseDoor");
         }
     }
 

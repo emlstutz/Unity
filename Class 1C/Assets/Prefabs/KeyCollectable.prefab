@@ -157,7 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d13f4028e6223c4faaa7ef6a1290623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCollected: 0
+  keyname: 
+  playerInv: {fileID: 0}
 --- !u!65 &8968572211092731200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
