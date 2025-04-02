@@ -1,41 +1,65 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class risingDoorMechanic : MonoBehaviour
 {
     public playerInventory playerInv;
+    public string doorKeyName;
     private bool isLocked = true;
     private bool isOpened = false;
-    public Transform player;
-    public string doorName;
+    private float detectionRangeCollider = 2f;
+    private Animator mAnimator;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
+        mAnimator = GetComponent<Animator>();
         isLocked = true;
         isOpened = false;
+
+        SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
+        sphereCollider.radius = detectionRangeCollider;
+        sphereCollider.isTrigger = true; // Enable trigger mode for detection
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (isLocked && playerInv.name == doorName) //Reference inventory instead of the keyDoorRise
+        if (isLocked && !isOpened && other.CompareTag("Player"))
         {
-            UnlockDoor();
+            if (CorrectKey(doorKeyName))
+            {
+                UnlockDoor();
+                Debug.Log("Door Unlocked");
+                isLocked = false;
+
+            }
+            else
+            {
+                Debug.Log("Door Locked");
+            }
         }
-        else
+    }
+
+    private bool CorrectKey(string keyRequired)
+    {
+        foreach (GameObject key in playerInv.inventory)
         {
-            Debug.Log("Door is Locked");
+            if (key.name == keyRequired)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void UnlockDoor()
+    {
+        Debug.Log("This Function Works!!");
+        if (mAnimator != null)
+        {
+            isOpened = true;
+            mAnimator.SetTrigger("openDoor01");
         }
     }
 
-    public void UnlockDoor()
-    {
-            Debug.Log("Is Unlocked!");
-    }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
