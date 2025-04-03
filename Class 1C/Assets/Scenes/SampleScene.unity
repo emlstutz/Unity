@@ -721,6 +721,33 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3091077602092660085, guid: 29cd899cd2cb4d1498080fd1454f706e, type: 3}
   m_PrefabInstance: {fileID: 6707289870742118191}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &707714312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5655025804779766424, guid: 29cd899cd2cb4d1498080fd1454f706e, type: 3}
+  m_PrefabInstance: {fileID: 6707289870742118191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &707714316
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707714312}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9cd928726d498d43a3f8652cde0e9e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &716571023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1808,6 +1835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInv: {fileID: 43338762}
   doorKeyName: Blue
+  mAnimator: {fileID: 1710169610}
 --- !u!65 &1710169606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2369,6 +2397,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 535421905155259327, guid: 29cd899cd2cb4d1498080fd1454f706e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 43338762}
+    - targetCorrespondingSourceObject: {fileID: 5655025804779766424, guid: 29cd899cd2cb4d1498080fd1454f706e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 707714316}
   m_SourcePrefab: {fileID: 100100000, guid: 29cd899cd2cb4d1498080fd1454f706e, type: 3}
 --- !u!1001 &6966850345613898742
 PrefabInstance:
