@@ -1,4 +1,6 @@
+using Mono.Cecil;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class PatrolState : StateMachineBehaviour
 {
@@ -24,7 +26,17 @@ public class PatrolState : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.transform.Rotate(0, 45 * Time.deltaTime * rotationSpeed, 0);
     }
+
+  public void PlayerSee()
+    {
+
+    }
+    
+
+    
+
+
 }
     
