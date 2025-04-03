@@ -65,7 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901a72790eaeac24eac9b9759f85bcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraRotationSpeed: 0
+  cameraRotationSpeed: 2
+  rayMaxDirection: 100
 --- !u!1102 &2258695775256370722
 AnimatorState:
   serializedVersion: 6
