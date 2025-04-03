@@ -27,7 +27,8 @@ public class Door : MonoBehaviour
             {
                 if (localInventory[i].tag == "KeyRed")
                 {
-                    this.gameObject.SetActive(false);    
+                    gameObject.SetActive(false);
+                    Debug.Log("collided");
                 }
             }
         }
