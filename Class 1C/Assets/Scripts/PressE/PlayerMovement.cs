@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,30 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     private Rigidbody rb;
 
+    public Transform orientationRay;
+    public float maxRayDistance = 10f;
+    public MainControls ms;
+    private IInteractable currentInteractable;
+
+
+    private void Awake()
+    {
+        ms = new MainControls();
+    }
+
+    private void OnEnable()
+    {
+        ms.Player.Interact.performed += Interact;
+        ms.Player.Interact.Enable();
+    }
+
+    private void OnDisable()
+    {
+        ms.Player.Interact.performed -= Interact;
+        ms.Player.Interact.Disable();
+    }
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,7 +50,30 @@ public class PlayerMovement : MonoBehaviour
         HandleMouseLook();
         HandleMovement();
         UpdateCameraPosition();
+
+        //RayCast
+        Vector3 origin = orientationRay.position; // elevate slightly to simulate eye-level if needed
+        Vector3 direction = orientationRay.forward;
+
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, maxRayDistance))
+        {
+            Debug.DrawRay(origin, direction * maxRayDistance, Color.yellow);
+            currentInteractable = hit.collider.GetComponent<IInteractable>();
+        }
+        else
+        {
+            currentInteractable = null;
+        }
     }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (currentInteractable != null)
+        {
+            currentInteractable.Interact();
+        }
+    }
+
 
     void HandleMouseLook()
     {
